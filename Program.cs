@@ -28,6 +28,10 @@ namespace EntityFExample
                 }
 
                 // Πρέπει να κάτσω να δω το Μπατσελορ.
+                foreach (var order in orders)
+                {
+                    Console.WriteLine(order.DeliveryDate);
+                }
             }
         }
     }
