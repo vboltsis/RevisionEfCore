@@ -26,6 +26,11 @@ namespace EntityFExample
                 {
                     Console.WriteLine($"{customer.FirstName} {customer.LastName}");
                 }
+
+                foreach (var order in orders)
+                {
+                    Console.WriteLine(order.DeliveryDate);
+                }
             }
         }
     }
