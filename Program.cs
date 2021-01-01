@@ -26,6 +26,8 @@ namespace EntityFExample
                 {
                     Console.WriteLine($"{customer.FirstName} {customer.LastName}");
                 }
+
+                // Πρέπει να κάτσω να δω το Μπατσελορ.
             }
         }
     }
