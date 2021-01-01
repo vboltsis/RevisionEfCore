@@ -9,6 +9,9 @@ namespace EntityFExample
         {
             using (var context = new ButcherContext())
             {
+                var orders = context.Orders
+                    .ToList();
+
                 var customers = context.Customers
                     .Take(10)
                     .ToList();

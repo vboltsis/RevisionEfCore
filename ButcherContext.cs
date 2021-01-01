@@ -22,6 +22,7 @@ namespace EntityFExample
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
+            //connection string
             optionsBuilder.UseSqlServer(@"Server=.;Database=ButcherDb;Trusted_Connection=True;");
         }
     }
