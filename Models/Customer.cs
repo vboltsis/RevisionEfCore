@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace EntityFExample.Models
 {
@@ -12,5 +13,7 @@ namespace EntityFExample.Models
         public string LastName { get; set; }
 
         public int Age { get; set; }
+
+        public List<Order> Orders { get; set; }
     }
 }

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 
 namespace EntityFExample
 {
@@ -9,29 +8,36 @@ namespace EntityFExample
         {
             using (var context = new ButcherContext())
             {
+                /*var goodCustomers = context.Customers
+                    //inner join
+                    .Include(c => c.Orders)
+                    .Where(c => c.Orders.Any(o => o.IsCancelled == true))
+                    .ToList();*/
+
+                /*var orders = context.Orders
+                    //the first order that was cancelled
+                    //firstOrDefault returns null if no elements match the expression
+                    //first returns an error if no element matches the expression
+                    .FirstOrDefault(o => o.IsCancelled == true);*/
+
                 var orders = context.Orders
+                    .OrderBy(o => o.Id)
+                    //the first order that was cancelled
+                    //firstOrDefault returns null if no elements match the expression
+                    //first returns an error if no element matches the expression
+                    .LastOrDefault(o => o.IsCancelled == true);
+
+                var customerIds = context.Customers
+                    .Where(c => c.Age > 40)
+                    .Select(c => c.Id)
+                    .ToArray();
+
+                var customerNames = context.Orders
+                    .Select(o => o.Customer.FirstName)
+                    .Distinct()
                     .ToList();
 
-                var customers = context.Customers
-                    .Take(10)
-                    .ToList();
-
-                var takis = context.Customers
-                    .FirstOrDefault(c => c.FirstName == "Takis");
-
-                takis.Age = 55;
-                context.SaveChanges();
-
-                foreach (var customer in customers)
-                {
-                    Console.WriteLine($"{customer.FirstName} {customer.LastName}");
-                }
-
-                // Πρέπει να κάτσω να δω το Μπατσελορ.
-                foreach (var order in orders)
-                {
-                    Console.WriteLine(order.DeliveryDate);
-                }
+                System.Console.WriteLine();
             }
         }
     }
